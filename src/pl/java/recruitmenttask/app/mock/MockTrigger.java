@@ -1,3 +1,7 @@
+package pl.java.recruitmenttask.app.mock;
+
+import pl.java.recruitmenttask.app.sort.Sorter;
+
 /**
  * This class is used for test purposes only.
  *
@@ -8,11 +12,14 @@ public class MockTrigger {
     /**
      * Main function, for test purposes only.
      */
-    public static void main() {
+    public static void main(String [] args) {
 
         //initialize calculations
-        Sorter sorter = new Sorter();
-        int [] data = {3,2,1,5,4,8,6};
+        int [] data = {5,4,3,2,1};
+
+        //Change parameter argument to make Sorter verbose
+        Sorter sorter = new Sorter(false);
+
         sorter.trigger(data);
 
         //show results
