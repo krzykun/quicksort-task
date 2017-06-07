@@ -1,6 +1,5 @@
 package pl.java.recruitmenttask.app.sort;
 
-import javax.xml.crypto.Data;
 import java.io.*;
 
 /**
@@ -141,7 +140,6 @@ public class Sorter {
                 if (Pivot < RangeEnd) {
                     qsort(Pivot + 1, RangeEnd); //troublesome line
                 }
-
             }
         }
     }
