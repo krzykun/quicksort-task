@@ -1,10 +1,7 @@
 package pl.java.recruitmenttask.app.sort;
 
-import jdk.internal.util.xml.impl.Input;
-
 import javax.xml.crypto.Data;
 import java.io.*;
-import java.sql.Wrapper;
 
 /**
  * This class contains a quicksort implementation.
@@ -39,6 +36,8 @@ public class Sorter {
 
     private static long CallCount = 0L;
 
+    private Integer [] DataArray;
+
     /**
      * Wrapped console debug print
      * It is used instead of "System.out.println".
@@ -50,7 +49,7 @@ public class Sorter {
         }
     }
 
-    private void printData(int RangeCount, int RangeStart, int RangeEnd) {
+    private void printDebugData(int RangeCount, int RangeStart, int RangeEnd) {
         wrappedPrintln("Loop number: "+ CallCount);
         wrappedPrintln("Range: "+RangeCount+", from: "+RangeStart+", to: "+RangeEnd);
         wrappedPrintln("Current Data:");
@@ -60,7 +59,10 @@ public class Sorter {
         wrappedPrintln("");
     }
 
-    private Integer [] DataArray;
+    public Integer[] getData() {
+        return DataArray;
+    }
+
     /**
      * Function that implements quicksort algorithm.
      * This function assumes C-style numbering (from 0 to n - 1 where n is the array length).
@@ -72,7 +74,7 @@ public class Sorter {
     {
         CallCount++;
         int RangeCount = RangeEnd - RangeStart + 1;
-        printData(RangeCount, RangeStart, RangeEnd);
+        printDebugData(RangeCount, RangeStart, RangeEnd);
         switch (RangeCount) {
             case 0: {
                 wrappedPrintln("No elements.");
@@ -99,9 +101,20 @@ public class Sorter {
                 boolean PivotAlocated = false;
                 int Pivot = RangeStart;
 
-                //qsort recurence
                 while (!PivotAlocated) {
-                    if ((Pivot + 1) <= RangeEnd) {
+                    if ((Pivot + 1) <= RangeEnd) {/*
+                        for (int i = 1; i < RangeCount; ++i) {
+                            if (DataArray[i] < DataArray[Pivot]) {
+                                Integer Clipboard = DataArray[Pivot];
+                                DataArray[Pivot] = DataArray[i];
+                                int j;
+                                for (j = i; j > Pivot + 1; j--) {
+                                    DataArray[j] = DataArray[j - 1];
+                                }
+                                DataArray[j] = Clipboard;
+                            }
+                        }
+                        Pivot++;*/
                         if (DataArray[Pivot + 1] < DataArray[Pivot]) { //continue search
                             int Clipboard = DataArray[Pivot];
                             DataArray[Pivot] = DataArray[Pivot + 1];
@@ -131,8 +144,6 @@ public class Sorter {
 
             }
         }
-
-
     }
 
     /**
@@ -159,7 +170,7 @@ public class Sorter {
         // Read filename from command line
         if ((args.length > 0) || (args.length < 2) ) {
             try {
-                Filename = args[1];
+                Filename = args[0];
             }
             catch(Exception e) {
                 System.out.println("Cannot parse the filename from commandline arguments.");
@@ -167,14 +178,15 @@ public class Sorter {
         }
 
         String InputLine = "";
-        String [] StringInput = {"6", "2", "3", "5", "1"};
+        String [] StringInput = {};
         Integer [] IntegerInput = {};
-/*
+
         // Parse numbers to String array
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(Filename), "UTF-8"))) {
-            while ((InputLine = br.readLine()) != null) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(Filename))) {
+            while ((InputLine = reader.readLine()) != null) {
                 StringInput = InputLine.split("\\s");
             }
+            reader.close();
         }
         catch (FileNotFoundException e) {
             System.out.println("File was not found.");
@@ -194,11 +206,34 @@ public class Sorter {
                 IntegerInput[i] = new Integer(StringInput[i]);
             }
         }
-*/
+
         // Trigger sorting
         Sorter sorter = new Sorter(true, IntegerInput);
 
-        // Write back to file
-    }
+        String outputLine = "";
+        Integer [] sortedArray = sorter.getData();
+        Filename = "Output.txt";
 
+        // Write back to file
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(Filename))) {
+            if (sortedArray.length > 0) {
+                for (int i = 0; i < sortedArray.length; ++i) {
+                    writer.write(" "+sortedArray[i]);
+                }
+            }
+            writer.close();
+        }
+        catch (FileNotFoundException e) {
+            System.out.println("File was not found.");
+            e.printStackTrace();
+        }
+        catch(UnsupportedEncodingException e) {
+            System.out.println("This encoding is not supported.");
+            e.printStackTrace();
+        }
+        catch(IOException e) {
+            System.out.println("General IO exception encountered.");
+            e.printStackTrace();
+        }
+    }
 }
