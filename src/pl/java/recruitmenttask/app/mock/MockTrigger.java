@@ -15,7 +15,7 @@ public class MockTrigger {
     public static void main(String [] args) {
 
         //initialize calculations
-        int [] data = {5,4,3,2,1};
+        Integer [] data = {5,4,3,2,1};
 
         //Change parameter argument to make Sorter verbose
         Sorter sorter = new Sorter(false);

@@ -1,6 +1,9 @@
 package pl.java.recruitmenttask.app.sort;
 
+import jdk.internal.util.xml.impl.Input;
+
 import javax.xml.crypto.Data;
+import java.io.*;
 import java.sql.Wrapper;
 
 /**
@@ -26,7 +29,7 @@ public class Sorter {
      * @param IsDebugActive
      * @param NewData
      */
-    public Sorter(boolean IsDebugActive, int [] NewData) {
+    public Sorter(boolean IsDebugActive, Integer [] NewData) {
         DebugActive = IsDebugActive;
         DataArray = NewData;
         trigger(DataArray);
@@ -57,7 +60,7 @@ public class Sorter {
         wrappedPrintln("");
     }
 
-    private int [] DataArray;
+    private Integer [] DataArray;
     /**
      * Function that implements quicksort algorithm.
      * This function assumes C-style numbering (from 0 to n - 1 where n is the array length).
@@ -82,7 +85,7 @@ public class Sorter {
             case 2: {
                 wrappedPrintln("Two elements.");
                 if (DataArray[RangeStart] > DataArray[RangeEnd]) {
-                    int temp = DataArray[RangeStart];
+                    Integer temp = DataArray[RangeStart];
                     DataArray[RangeStart] = DataArray[RangeEnd];
                     DataArray[RangeEnd] = temp;
 
@@ -137,7 +140,7 @@ public class Sorter {
      *
      * @param Array     Data to be sorted
      */
-    public int trigger(int [] Array)
+    public int trigger(Integer [] Array)
     {
         DataArray = Array;
         if (DataArray.length < 1) {
@@ -148,6 +151,54 @@ public class Sorter {
         qsort(0, Array.length - 1);
 
         return 0;
+    }
+
+    public static void main(String [] args) {
+        String Filename = "";
+
+        // Read filename from command line
+        if ((args.length > 0) || (args.length < 2) ) {
+            try {
+                Filename = args[1];
+            }
+            catch(Exception e) {
+                System.out.println("Cannot parse the filename from commandline arguments.");
+            }
+        }
+
+        String InputLine = "";
+        String [] StringInput = {"6", "2", "3", "5", "1"};
+        Integer [] IntegerInput = {};
+/*
+        // Parse numbers to String array
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(Filename), "UTF-8"))) {
+            while ((InputLine = br.readLine()) != null) {
+                StringInput = InputLine.split("\\s");
+            }
+        }
+        catch (FileNotFoundException e) {
+            System.out.println("File was not found.");
+        }
+        catch(UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        catch(IOException e) {
+            System.out.println("General IO exception encountered.");
+            e.printStackTrace();
+        }
+
+        // Parse String array into numbers
+        if (StringInput.length > 0) {
+            IntegerInput = new Integer[StringInput.length];
+            for (int i = 0; i < StringInput.length; ++i) {
+                IntegerInput[i] = new Integer(StringInput[i]);
+            }
+        }
+*/
+        // Trigger sorting
+        Sorter sorter = new Sorter(true, IntegerInput);
+
+        // Write back to file
     }
 
 }

@@ -21,7 +21,7 @@ class SorterTest {
 
     @Test
     void dataArrayNullTest() {
-        int [] EmptyArray = {};
+        Integer [] EmptyArray = {};
         if (sorter.trigger(EmptyArray) == -1) {
 
         }
@@ -32,8 +32,8 @@ class SorterTest {
 
     @Test
     void onlyOneElementTest() {
-        int [] DataArray = {42};
-        int [] ResultArray = {42};
+        Integer [] DataArray = {42};
+        Integer [] ResultArray = {42};
         sorter.trigger(DataArray);
         if (!(DataArray.length == ResultArray.length)) {
             fail("Arrays that should be equal have different amount of elements.");
@@ -49,8 +49,8 @@ class SorterTest {
 
     @Test
     void twoElementsTest() {
-        int [] DataArray = {1337, 42};
-        int [] ResultArray = {42, 1337};
+        Integer [] DataArray = {1337, 42};
+        Integer [] ResultArray = {42, 1337};
         sorter.trigger(DataArray);
         if (!(DataArray.length == ResultArray.length)) {
             fail("Arrays that should be equal have different amount of elements.");
@@ -69,8 +69,8 @@ class SorterTest {
      */
     @Test
     void unevenAmountTest() {
-        int [] DataArray = {5, 0, 3, 1, 2, 4};
-        int [] ResultArray = {0, 1, 2, 3, 4, 5};
+        Integer [] DataArray = {5, 0, 3, 1, 2, 4};
+        Integer [] ResultArray = {0, 1, 2, 3, 4, 5};
         sorter.trigger(DataArray);
         if (!(DataArray.length == ResultArray.length)) {
             fail("Arrays that should be equal have different amount of elements.");
@@ -89,8 +89,8 @@ class SorterTest {
      */
     @Test
     void alreadySortedArrayTest() {
-        int [] DataArray = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-        int [] ResultArray = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+        Integer [] DataArray = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+        Integer [] ResultArray = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
         sorter.trigger(DataArray);
         if (!(DataArray.length == ResultArray.length)) {
             fail("Arrays that should be equal have different amount of elements.");
@@ -109,8 +109,8 @@ class SorterTest {
      */
     @Test
     void worstCaseArrayTest() {
-        int [] DataArray = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-        int [] ResultArray = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+        Integer [] DataArray = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+        Integer [] ResultArray = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
         sorter.trigger(DataArray);
         if (!(DataArray.length == ResultArray.length)) {
             fail("Arrays that should be equal have different amount of elements.");
