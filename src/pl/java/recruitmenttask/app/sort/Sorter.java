@@ -1,5 +1,6 @@
 package pl.java.recruitmenttask.app.sort;
 
+import javax.xml.crypto.Data;
 import java.sql.Wrapper;
 
 /**
@@ -68,8 +69,7 @@ public class Sorter {
     {
         CallCount++;
         int RangeCount = RangeEnd - RangeStart + 1;
-        if (DebugActive)
-            printData(RangeCount, RangeStart, RangeEnd);
+        printData(RangeCount, RangeStart, RangeEnd);
         switch (RangeCount) {
             case 0: {
                 wrappedPrintln("No elements.");
@@ -139,12 +139,12 @@ public class Sorter {
      */
     public int trigger(int [] Array)
     {
-        if (Array.length < 1) {
+        DataArray = Array;
+        if (DataArray.length < 1) {
             wrappedPrintln("ERROR Array length is less than 1.");
             return -1;
         }
 
-        DataArray = Array;
         qsort(0, Array.length - 1);
 
         return 0;
