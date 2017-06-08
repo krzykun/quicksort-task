@@ -16,7 +16,7 @@ class SorterTest {
     /**
      * Set IsDebugActive property of sorter to make Sorter verbose.
      */
-    Sorter sorter = new Sorter(false);
+    Sorter sorter = new Sorter(true);
 
     @Test
     void dataArrayNullTest() {

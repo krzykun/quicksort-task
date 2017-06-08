@@ -99,21 +99,22 @@ public class Sorter {
                 //finding pivot
                 boolean PivotAlocated = false;
                 int Pivot = RangeStart;
-
+/*
                 while (!PivotAlocated) {
-                    if ((Pivot + 1) <= RangeEnd) {/*
-                        for (int i = 1; i < RangeCount; ++i) {
-                            if (DataArray[i] < DataArray[Pivot]) {
-                                Integer Clipboard = DataArray[Pivot];
-                                DataArray[Pivot] = DataArray[i];
-                                int j;
-                                for (j = i; j > Pivot + 1; j--) {
-                                    DataArray[j] = DataArray[j - 1];
-                                }
-                                DataArray[j] = Clipboard;
-                            }
+                    if ((Pivot + 1) <= RangeEnd) {*/
+                for (int i = RangeStart + 1; i < RangeStart + RangeCount; ++i) {
+                    if (DataArray[i] < DataArray[Pivot]) {
+                        Integer Clipboard = DataArray[Pivot];
+                        DataArray[Pivot] = DataArray[i];
+                        int j;
+                        for (j = i; j > Pivot + 1; j--) {
+                            DataArray[j] = DataArray[j - 1];
                         }
-                        Pivot++;*/
+                        DataArray[j] = Clipboard;
+                    }
+                }
+                        /*
+                        Pivot++;
                         if (DataArray[Pivot + 1] < DataArray[Pivot]) { //continue search
                             int Clipboard = DataArray[Pivot];
                             DataArray[Pivot] = DataArray[Pivot + 1];
@@ -126,8 +127,8 @@ public class Sorter {
                     }
                     else {
                         PivotAlocated = true;
-                    }
-                }
+                    }*/
+                //}
                 //finding pivot end
 
                 //recurence
@@ -164,19 +165,23 @@ public class Sorter {
 
     public static void main(String [] args) {
         String Filename = "";
+        boolean isVerbose = false;
 
         // Read filename from command line
-        if ((args.length > 0) || (args.length < 2) ) {
+        if ((args.length > 0) || (args.length < 3) ) {
             try {
                 Filename = args[0];
             }
             catch(Exception e) {
                 System.out.println("Cannot parse the filename from commandline arguments.");
             }
+            if (args[1] == "-v") {
+                isVerbose = true;
+            }
         }
 
         String InputLine = "";
-        String [] StringInput = {};
+        String [] StringInput = {/*"6", "3", "2", "5", "1", "4"*/};
         Integer [] IntegerInput = {};
 
         // Parse numbers to String array
@@ -206,7 +211,7 @@ public class Sorter {
         }
 
         // Trigger sorting
-        Sorter sorter = new Sorter(true, IntegerInput);
+        Sorter sorter = new Sorter(isVerbose, IntegerInput);
 
         String outputLine = "";
         Integer [] sortedArray = sorter.getData();
