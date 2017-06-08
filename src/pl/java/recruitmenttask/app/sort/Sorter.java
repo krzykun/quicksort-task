@@ -101,9 +101,7 @@ public class Sorter {
                 //finding pivot
                 boolean PivotAlocated = false;
                 int Pivot = RangeStart;
-/*
-                while (!PivotAlocated) {
-                    if ((Pivot + 1) <= RangeEnd) {*/
+
                 for (int i = RangeStart + 1; i < RangeStart + RangeCount; ++i) {
                     if (DataArray[i] < DataArray[Pivot]) {
                         Integer Clipboard = DataArray[Pivot];
@@ -115,23 +113,6 @@ public class Sorter {
                         DataArray[j] = Clipboard;
                     }
                 }
-                        /*
-                        Pivot++;
-                        if (DataArray[Pivot + 1] < DataArray[Pivot]) { //continue search
-                            int Clipboard = DataArray[Pivot];
-                            DataArray[Pivot] = DataArray[Pivot + 1];
-                            Pivot++;
-                            DataArray[Pivot] = Clipboard;
-                        }
-                        else {
-                            PivotAlocated = true;
-                        }
-                    }
-                    else {
-                        PivotAlocated = true;
-                    }*/
-                //}
-                //finding pivot end
 
                 //recurence
                 wrappedPrintln("Many elements.");
