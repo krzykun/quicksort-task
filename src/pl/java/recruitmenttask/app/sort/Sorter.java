@@ -52,9 +52,11 @@ public class Sorter {
         wrappedPrintln("Loop number: "+ CallCount);
         wrappedPrintln("Range: "+RangeCount+", from: "+RangeStart+", to: "+RangeEnd);
         wrappedPrintln("Current Data:");
+        String PrintThisArray = "";
         for (int i = 0; i < DataArray.length; ++i) {
-            System.out.printf("\t%d", DataArray[i]);
+            PrintThisArray += "\t"+DataArray[i].toString();
         }
+        wrappedPrintln(PrintThisArray);
         wrappedPrintln("");
     }
 
@@ -139,7 +141,7 @@ public class Sorter {
                     qsort(RangeStart, Pivot - 1);
                 }
                 if (Pivot < RangeEnd) {
-                    qsort(Pivot + 1, RangeEnd); //troublesome line
+                    qsort(Pivot + 1, RangeEnd);
                 }
             }
         }
@@ -175,8 +177,10 @@ public class Sorter {
             catch(Exception e) {
                 System.out.println("Cannot parse the filename from commandline arguments.");
             }
-            if (args[1] == "-v") {
-                isVerbose = true;
+            if (args.length > 1) {
+                if (args[1].contentEquals("-v")) {
+                    isVerbose = true;
+                }
             }
         }
 
