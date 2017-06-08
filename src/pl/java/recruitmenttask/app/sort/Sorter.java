@@ -40,9 +40,9 @@ public class Sorter {
     /**
      * Wrapped console debug print
      * It is used instead of "System.out.println".
-     * @param message
+     * @param message A line to be printed to output
      */
-    void wrappedPrintln(String message) {
+    private void wrappedPrintln(String message) {
         if (DebugActive) {
             System.out.println(message);
         }
@@ -133,7 +133,7 @@ public class Sorter {
      *
      * @param Array     Data to be sorted
      */
-    public int trigger(Integer [] Array)
+    int trigger(Integer [] Array)
     {
         DataArray = Array;
         if (DataArray.length < 1) {
@@ -165,7 +165,7 @@ public class Sorter {
             }
         }
 
-        String InputLine = "";
+        String InputLine;
         String [] StringInput = {/*"6", "3", "2", "5", "1", "4"*/};
         Integer [] IntegerInput = {};
 

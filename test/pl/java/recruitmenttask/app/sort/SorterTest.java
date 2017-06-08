@@ -1,7 +1,5 @@
 package pl.java.recruitmenttask.app.sort;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
@@ -16,7 +14,7 @@ class SorterTest {
     /**
      * Set IsDebugActive property of sorter to make Sorter verbose.
      */
-    Sorter sorter = new Sorter(false);
+    private Sorter sorter = new Sorter(false);
 
     @Test
     void dataArrayNullTest() {
