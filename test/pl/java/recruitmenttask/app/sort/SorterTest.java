@@ -16,7 +16,7 @@ class SorterTest {
     /**
      * Set IsDebugActive property of sorter to make Sorter verbose.
      */
-    Sorter sorter = new Sorter(true);
+    Sorter sorter = new Sorter(false);
 
     @Test
     void dataArrayNullTest() {
@@ -38,7 +38,7 @@ class SorterTest {
             fail("Arrays that should be equal have different amount of elements.");
         }
         for (int i = 0; i < DataArray.length; ++i) {
-            if (DataArray[i] == ResultArray[i]) {
+            if (DataArray[i].equals(ResultArray[i])) {
             }
             else {
                 fail("Data array elements are not sorted correctly (they are not in order).");
@@ -75,7 +75,24 @@ class SorterTest {
             fail("Arrays that should be equal have different amount of elements.");
         }
         for (int i = 0; i < DataArray.length; ++i) {
-            if (DataArray[i] == ResultArray[i]) {
+            if (DataArray[i].equals(ResultArray[i])) {
+            }
+            else {
+                fail("Data array elements are not sorted correctly (they are not in order).");
+            }
+        }
+    }
+
+    @Test
+    void negativeNumbersTest() {
+        Integer [] DataArray = {-5, 0, 3, -1, 2, -4};
+        Integer [] ResultArray = {-5, -4, -1, 0, 2, 3};
+        sorter.trigger(DataArray);
+        if (!(DataArray.length == ResultArray.length)) {
+            fail("Arrays that should be equal have different amount of elements.");
+        }
+        for (int i = 0; i < DataArray.length; ++i) {
+            if (DataArray[i].equals(ResultArray[i])) {
             }
             else {
                 fail("Data array elements are not sorted correctly (they are not in order).");
@@ -95,7 +112,7 @@ class SorterTest {
             fail("Arrays that should be equal have different amount of elements.");
         }
         for (int i = 0; i < DataArray.length; ++i) {
-            if (DataArray[i] == ResultArray[i]) {
+            if (DataArray[i].equals(ResultArray[i])) {
             }
             else {
                 fail("Data array elements are not sorted correctly (they are not in order).");
@@ -115,7 +132,7 @@ class SorterTest {
             fail("Arrays that should be equal have different amount of elements.");
         }
         for (int i = 0; i < DataArray.length; ++i) {
-            if (DataArray[i] == ResultArray[i]) {
+            if (DataArray[i].equals(ResultArray[i])) {
             }
             else {
                 fail("Data array elements are not sorted correctly (they are not in order).");
